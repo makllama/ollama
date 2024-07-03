@@ -141,7 +141,7 @@ func MUSAGetGPUInfo() []MusaGPUInfo {
 
 		gpuInfo := MusaGPUInfo{
 			GpuInfo: GpuInfo{
-				Library: "musa",
+				Library: "cuda",
 				memInfo: memInfo{
 					TotalMemory: totalMemory,
 					FreeMemory:  (totalMemory - usedMemory),
