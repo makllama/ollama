@@ -156,7 +156,8 @@ func NewLlamaServer(gpus gpu.GpuInfoList, model string, ggml *GGML, adapters, pr
 		"--model", model,
 		"--ctx-size", fmt.Sprintf("%d", opts.NumCtx),
 		"--batch-size", fmt.Sprintf("%d", opts.NumBatch),
-		"--embedding",
+		// XXX: Panic on embedding. This is a temporary measure to prevent the server from crashing.
+		// "--embedding",
 	}
 
 	params = append(params, "--log-disable")
