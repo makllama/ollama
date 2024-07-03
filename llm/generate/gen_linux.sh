@@ -192,7 +192,7 @@ if [ -z "${OLLAMA_SKIP_CUDA_GENERATE}" -a -d "${CUDA_LIB_DIR}" ]; then
     #        downloading them in the install script.
     DEPS="$(ldd ${BUILD_DIR}/bin/ollama_llama_server )"
     # XXX: libcublasLt.so is not available in MUSA
-    for lib in libmusart.so libmublas.so ; do
+    for lib in libmusa.so libmusart.so libmublas.so; do
         DEP=$(echo "${DEPS}" | grep ${lib} | cut -f1 -d' ' | xargs || true)
         if [ -n "${DEP}" -a -e "${CUDA_LIB_DIR}/${DEP}" ]; then
             cp "${CUDA_LIB_DIR}/${DEP}" "${BUILD_DIR}/bin/"
