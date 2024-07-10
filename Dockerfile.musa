@@ -30,7 +30,7 @@ RUN go env -w GOPROXY=https://goproxy.cn,direct
 # Install musa toolkits
 ENV DOWNLOAD_PREFIX=https://oss.mthreads.com/product-release/release-kuae-1.2.0/External
 RUN wget --no-check-certificate ${DOWNLOAD_PREFIX}/ddk_x86-mtgpu_linux-xorg-release-pdump_off.deb -O ddk.deb
-RUN wget --no-check-certificate ${DOWNLOAD_PREFIX}/musa_toolkits_install_full.tar.gz -O musa.tar.gz
+RUN wget --no-check-certificate https://oss.mthreads.com/release-ci/computeQA/tmp/dailyPKG-release-kuae-1.2.0/49/qy1/musa_toolkits_install_full.tar.gz -O musa.tar.gz
 RUN mkdir -p /ddk && dpkg -x ddk.deb /ddk
 RUN tar -xvf musa.tar.gz && ./musa_toolkits_install/install.sh
 RUN printf "/ddk/usr/lib/x86_64-linux-gnu/musa\n/usr/local/musa/lib" > /etc/ld.so.conf.d/000-musa.conf && \
