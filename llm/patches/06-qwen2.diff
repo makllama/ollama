@@ -1,13 +1,13 @@
 diff --git a/src/llama.cpp b/src/llama.cpp
-index 40d2ec2c..f34eb79a 100644
+index ed77ed91..f53e76eb 100644
 --- a/src/llama.cpp
 +++ b/src/llama.cpp
-@@ -6943,7 +6943,7 @@ static struct ggml_tensor * llm_build_kqv(
-         struct ggml_tensor * kq = ggml_mul_mat(ctx, k, q);
-         cb(kq, "kq", il);
- 
+@@ -8125,7 +8125,7 @@ static struct ggml_tensor * llm_build_kqv(
+
+         cur = ggml_flash_attn_ext(ctx, q, k, v, kq_mask, kq_scale, hparams.f_max_alibi_bias);
+
 -        if (model.arch == LLM_ARCH_PHI2 || model.arch == LLM_ARCH_PHI3 || model.arch == LLM_ARCH_GPTNEOX) {
 +        if (model.arch == LLM_ARCH_PHI2 || model.arch == LLM_ARCH_PHI3 || model.arch == LLM_ARCH_GPTNEOX || model.arch == LLM_ARCH_QWEN2) {
-             // for this arch, we need to perform the KQ multiplication with F32 precision, otherwise we get NaNs
-             // ref: https://github.com/ggerganov/llama.cpp/pull/4490#issuecomment-1859055847
-             ggml_mul_mat_set_prec(kq, GGML_PREC_F32);
+             ggml_flash_attn_ext_set_prec(cur, GGML_PREC_F32);
+         }
+
