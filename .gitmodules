@@ -2,4 +2,4 @@
 	path = llm/llama.cpp
 	url = https://github.com/makllama/llama.cpp.git
 	shallow = true
-	branch = musa
+	branch = test
